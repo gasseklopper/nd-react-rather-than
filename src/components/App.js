@@ -13,7 +13,7 @@ class App extends Component {
       <div>
         {this.props.loading === true
           ? null
-          : <Dashboard />}
+          : <h3>hello</h3>  }
       </div>
     )
   }
