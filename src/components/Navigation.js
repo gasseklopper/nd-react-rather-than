@@ -1,11 +1,13 @@
 import React, { Component } from 'react'
-import { NavLink } from "react-router-dom";
-import { Menu, Label } from 'semantic-ui-react'
+import { NavLink } from "react-router-dom"
+import { Menu, Label, Image } from 'semantic-ui-react'
+import { connect } from "react-redux"
 
-export default class MenuExampleSecondary extends Component {
+ class Navigation extends Component {
 
 	render() {
-
+    const { users, authedUser } = this.props;
+    const { name, avatarURL } = users[authedUser];
 
 		return (
 			<Menu>
@@ -22,8 +24,8 @@ export default class MenuExampleSecondary extends Component {
 					<Menu.Item>
 						<div>
 							<Label image>
-								<img alt='' src='https://react.semantic-ui.com/images/avatar/small/elliot.jpg' />
-									Elliot
+								<img alt='' src={avatarURL} />
+									{name}
 							</Label>
 						</div>
 					</Menu.Item>
@@ -38,3 +40,9 @@ export default class MenuExampleSecondary extends Component {
 		)
 	}
 }
+
+const mapStateToProps = state => {
+  return { authedUser: state.authedUser, users: state.users };
+};
+
+export default connect(mapStateToProps)(Navigation);
