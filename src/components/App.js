@@ -28,6 +28,7 @@ class App extends Component {
         <BrowserRouter>
           <Switch>
             <Route path="/" component={Login} />
+            <Route exact path="/login" component={Login} />
           </Switch>
         </BrowserRouter>
       );
@@ -42,6 +43,7 @@ class App extends Component {
           <div className="ui main text container" style={{ marginTop: "7em" }}>
             <Switch>
               <Route exact path="/" component={Login} />
+
 			  <Route path="/dashboard" component={Dashboard} />
 			  <Route path="/add" component={AddPoll} />
 			  <Route path="/leaderboard" component={Leaderboard} />
