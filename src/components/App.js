@@ -4,14 +4,18 @@ import { connect } from "react-redux";
 import LoadingBar from "react-redux-loading";
 import { handleInitialData } from "../actions/shared";
 
+import Footer from "../components/Footer";
+import Navigation from "../components/Navigation";
+import AddPoll from '../components/AddPoll'
+
 import Login from "./Login";
 import Dashboard from "./Dashboard";
+import Leaderboard from "./Leaderboard";
 
 class App extends Component {
 
   componentDidMount() {
-    const { handleInitialData } = this.props;
-    handleInitialData();
+  this.props.dispatch(handleInitialData())
   }
 
   render() {
@@ -30,6 +34,7 @@ class App extends Component {
 
     return (
       <BrowserRouter>
+		<Navigation/>
         <Fragment>
           <LoadingBar  />
 
@@ -37,9 +42,12 @@ class App extends Component {
             <Switch>
               <Route exact path="/" component={Login} />
 			  <Route path="/dashboard" component={Dashboard} />
+			  <Route path="/add" component={AddPoll} />
+			  <Route path="/leaderboard" component={Leaderboard} />
             </Switch>
           </div>
         </Fragment>
+		<Footer/>
       </BrowserRouter>
     );
   }
@@ -51,7 +59,4 @@ const mapStateToProps = state => {
   return { authedUser };
 };
 
-export default connect(
-  mapStateToProps,
-  { handleInitialData }
-)(App);
+export default connect(mapStateToProps)(App)

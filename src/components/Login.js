@@ -11,6 +11,7 @@ class Login extends Component {
   referrer = null;
 
   componentDidMount() {
+		// this.props.setAuthedUser(null);
     const { history, location: { pathname }} = this.props;
     this.referrer = pathname;
     history.push("/login");
