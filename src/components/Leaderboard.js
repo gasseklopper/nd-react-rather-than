@@ -1,25 +1,38 @@
 import React, { Component } from 'react'
-import { Grid, Container, Header } from 'semantic-ui-react'
+import { Grid, Container, Header, Card, Icon, Image } from 'semantic-ui-react'
 import LeaderBoardCard from "./LeaderBoardCard"
 import { connect } from 'react-redux'
 
 class Leaderboard extends Component {
   render() {
+	const { users, userPlacements } = this.props
+
 	return(
-		<Container>
+		<Container >
 			<Header as='h1'>Leader Board</Header>
 			<Header as='h3'>Would You Rather than?</Header>
-			<Grid columns={3} divided>
+			<Grid columns={3}>
 				<Grid.Row stretched>
-				<Grid.Column>
-					<LeaderBoardCard></LeaderBoardCard>
-				</Grid.Column>
-				<Grid.Column>
-					<LeaderBoardCard></LeaderBoardCard>
-				</Grid.Column>
-				<Grid.Column>
-					<LeaderBoardCard></LeaderBoardCard>
-				</Grid.Column>
+					{userPlacements.sort((a, b) => b.questionPoints - a.questionPoints).map(user => (
+						<Grid.Column key={user.id}>
+							<Card>
+								<Image src={users[user.id].avatarURL} wrapped ui={false} />
+								<Card.Content>
+									<Card.Header>{`${users[user.id].name}`}</Card.Header>
+									<Card.Meta>
+										<span className='date'></span>
+									</Card.Meta>
+									<Card.Description>
+										<b>{user.questionPoints} pts</b>
+									</Card.Description>
+								</Card.Content>
+								<Card.Content extra>
+									<p>Questions answered: {Object.keys(users[user.id].answers).length}</p>
+									<p>Questions asked: {Object.keys(users[user.id].questions).length}</p>
+								</Card.Content>
+							</Card>
+						</Grid.Column>
+					))}
 				</Grid.Row>
 			</Grid>
 		</Container>
@@ -29,15 +42,15 @@ class Leaderboard extends Component {
 
 function mapStateToProps({ users }) {
   const userIds = Object.keys(users)
-  const leaderboardPlacements = userIds.map(id => ({
+  const userPlacements = userIds.map(id => ({
     id: id,
-    points:
+    questionPoints:
       Object.keys(users[id].answers).length +
       Object.keys(users[id].questions).length
   }))
 
   return {
-    leaderboardPlacements,
+    userPlacements,
     users
   }
 }
