@@ -3,6 +3,7 @@ import { connect } from 'react-redux'
 import Question from './Question'
 
  class Dashboard extends Component {
+   referrer = null
   render() {
     return (
       <div>
