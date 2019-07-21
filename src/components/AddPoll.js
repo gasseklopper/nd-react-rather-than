@@ -4,7 +4,7 @@ import { handleSaveQuestion } from '../actions/questions'
 import { Redirect } from 'react-router-dom'
 import { Form, Button, Header, Container, Card } from 'semantic-ui-react'
 
-class NewQuestion extends Component {
+class AddPoll extends Component {
 	state = {
 		redirect: false,
 		optionOneText: '',
@@ -39,7 +39,7 @@ class NewQuestion extends Component {
 		const disableSubmit = optionOneText === '' ? true : optionTwoText === ''
 
 		if (redirect) {
-			return <Redirect to={`/Dashboard`} />
+			return <Redirect to={`/`} />
 		}
 
 		return (
@@ -68,7 +68,7 @@ class NewQuestion extends Component {
 									name="optionTwoText"
 								/>
 							</Form.Field>
-							<Button type='submit' disabled={disableSubmit}>Submit</Button>
+							<Button type='submit' primary disabled={disableSubmit}>Submit</Button>
 						</Form>
 					</Card.Content>
 				</Card>
@@ -83,4 +83,4 @@ function mapStateToProps({ authedUser }) {
 	}
 }
 
-export default connect(mapStateToProps)(NewQuestion)
+export default connect(mapStateToProps)(AddPoll)
