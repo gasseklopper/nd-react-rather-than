@@ -1,68 +1,46 @@
-import React, { Component, Fragment } from "react";
-import { BrowserRouter, Switch, Route } from "react-router-dom";
-import { connect } from "react-redux";
-import LoadingBar from "react-redux-loading";
-import { handleInitialData } from "../actions/shared";
+import React, { Component, Fragment } from "react"
+import { BrowserRouter as Router, Route } from "react-router-dom"
+import { connect } from "react-redux"
+import { handleInitialData } from "../actions/shared"
 
-import Footer from "../components/Footer";
-import Navigation from "../components/Navigation";
+//components
 import AddPoll from '../components/AddPoll'
+import Login from "./Login"
+import Dashboard from "./Dashboard"
+import Leaderboard from "./Leaderboard"
+import Questions from './Question/Question'
 
-import Login from "./Login";
-import Dashboard from "./Dashboard";
-import Leaderboard from "./Leaderboard";
-import Logout from "./Logout";
+// Routing
+import PrivateRoute from './PrivateRoute'
 
 class App extends Component {
-
 	componentDidMount() {
 		this.props.dispatch(handleInitialData())
 	}
 
 	render() {
-		const { authedUser } = this.props;
-	console.log('authedUser: ', authedUser)
-		if (!authedUser) {
-			return (
-
-				<BrowserRouter>
-						<LoadingBar/>
-					<Switch>
-
-						 <Route path="/add" component={AddPoll} />
-						<Route path="/" component={Login} />
-						<Route exact path="/login" component={Login} />
-					</Switch>
-				</BrowserRouter>
-			);
-		}
-
 		return (
-			<BrowserRouter>
-		<Navigation/>
+			<Router>
 				<Fragment>
 
-					<div className="ui main text container" style={{ marginTop: "7em" }}>
-						<Switch>
-							<Route exact path="/" component={Login} />
+							<div>
+								<Route path="/login" component={Login}/>
+								<PrivateRoute path="/" exact component={Dashboard}/>
+								<PrivateRoute path="/add" component={AddPoll}/>
+								<PrivateRoute path="/leaderboard" component={Leaderboard}/>
+								<PrivateRoute path="/question/:question_id" component={Questions}/>
+							</div>
 
-				<Route path="/dashboard" component={Dashboard} />
-				<Route path="/add" component={AddPoll} />
-				<Route path="/leaderboard" component={Leaderboard} />
-				<Route path="/logout" component={Logout} />
-						</Switch>
-					</div>
 				</Fragment>
-		<Footer/>
-			</BrowserRouter>
-		);
+			</Router>
+		)
 	}
 }
 
-const mapStateToProps = state => {
-	// console.log(state);
-	const { authedUser } = state;
-	return { authedUser };
-};
+function mapStateToProps({ users }) {
+	return {
+		users
+	}
+}
 
-export default connect(mapStateToProps)(App)
+export default connect(mapStateToProps)(App);
