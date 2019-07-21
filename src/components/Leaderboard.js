@@ -4,7 +4,7 @@ import { connect } from 'react-redux'
 
 class Leaderboard extends Component {
 	render() {
-		const { users, userPlacements } = this.props
+		const { users, userPlacements, authedUser } = this.props
 		return(
 			<Container >
 				<Header as='h1'>Leader Board</Header>
@@ -16,10 +16,7 @@ class Leaderboard extends Component {
 								<Card>
 									<Image src={users[user.id].avatarURL} wrapped ui={false} />
 									<Card.Content>
-										<Card.Header>{`${users[user.id].name}`}</Card.Header>
-										<Card.Meta>
-											<span className='date'></span>
-										</Card.Meta>
+										<Card.Header>{`${users[user.id].name}`}{authedUser === user.id &&	<span> (You)</span>}</Card.Header>
 										<Card.Description>
 											<b>{user.questionPoints} pts</b>
 										</Card.Description>
@@ -38,7 +35,7 @@ class Leaderboard extends Component {
 	}
 }
 
-function mapStateToProps({ users }) {
+function mapStateToProps({ users, authedUser }) {
 	const userIds = Object.keys(users)
 	const userPlacements = userIds.map(id => ({
 		id: id,
@@ -49,7 +46,8 @@ function mapStateToProps({ users }) {
 
 	return {
 		userPlacements,
-		users
+		users,
+		authedUser
 	}
 }
 
