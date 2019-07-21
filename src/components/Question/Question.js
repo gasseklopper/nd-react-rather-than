@@ -36,21 +36,21 @@ class Question extends Component {
 				{question
 					?
 					(<div>
-										<Card>
-					<Image src={author.avatarURL} alt={author.name} wrapped ui={false} />
-					<Card.Content>
-						<Card.Header>{author.name}{authedUser === author.id &&	<span> (You)</span>}</Card.Header>
-						<Card.Description>
-							Would you rather
-							<Button>
-								<Option questionId={question.id} optionName="optionOne" onClick={this.handleVote}/>
-							</Button>
-							  or <Option questionId={question.id} optionName="optionTwo" onClick={this.handleVote}/>?
-						</Card.Description>
-					</Card.Content>
-					<Card.Content extra>
-					</Card.Content>
-				</Card>
+						<Card>
+							<Image src={author.avatarURL} alt={author.name} wrapped ui={false} />
+							<Card.Content>
+								<Card.Header>{author.name}{authedUser === author.id &&	<span> (You)</span>}</Card.Header>
+								<Card.Description>
+									Would you rather
+									<Button>
+										<Option questionId={question.id} optionName="optionOne" onClick={this.handleVote}/>
+									</Button>
+									or <Option questionId={question.id} optionName="optionTwo" onClick={this.handleVote}/>?
+								</Card.Description>
+							</Card.Content>
+							<Card.Content extra>
+							</Card.Content>
+						</Card>
 					</div>)
 					: <MissingQuestion/>}
 			</Fragment>

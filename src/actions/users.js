@@ -5,5 +5,4 @@ export function receiveUsers (users) {
 		type: RECEIVE_USERS,
 		users,
 	}
-
 }

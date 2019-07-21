@@ -9,8 +9,8 @@ export function setAuthedUser (id) {
 }
 
 export function logOut(id) {
-    return {
-        type: LOG_OUT,
-        id
-    }
+	return {
+		type: LOG_OUT,
+		id
+	}
 }
