@@ -8,7 +8,7 @@ import AddPoll from '../components/AddPoll'
 import Login from "./Login"
 import Dashboard from "./Dashboard"
 import Leaderboard from "./Leaderboard"
-import Questions from './Question/Question'
+import Question from './Question/Question'
 
 // Routing
 import PrivateRoute from './PrivateRoute'
@@ -28,7 +28,7 @@ class App extends Component {
 								<PrivateRoute path="/" exact component={Dashboard}/>
 								<PrivateRoute path="/add" component={AddPoll}/>
 								<PrivateRoute path="/leaderboard" component={Leaderboard}/>
-								<PrivateRoute path="/question/:question_id" component={Questions}/>
+								<PrivateRoute path="/question/:question_id" component={Question}/>
 							</div>
 
 				</Fragment>
