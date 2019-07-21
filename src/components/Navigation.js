@@ -1,17 +1,35 @@
 import React, { Component } from 'react'
-import { NavLink } from "react-router-dom"
+import { NavLink, Redirect } from "react-router-dom"
 import { Menu, Label } from 'semantic-ui-react'
 import { connect } from "react-redux"
+import {logOut} from "../actions/authedUser"
 
  class Navigation extends Component {
+	state = {
+		redirectLogin: false
+	}
+
+	 handleLogOut = (e) => {
+		e.preventDefault()
+		this.props.dispatch(logOut())
+		this.setState(() => ({
+			redirectLogin: true
+		}))
+	}
 
 	render() {
-    const { users, authedUser } = this.props;
-    const { name, avatarURL } = users[authedUser];
+	const { users, authedUser } = this.props;
+	const { name, avatarURL } = users[authedUser];
+
+		const {redirectLogin} = this.state
+
+		if (redirectLogin === true) {
+			return (<Redirect to="/login"/>)
+		}
 
 		return (
 			<Menu>
-				<NavLink to="/dashboard" exact className="item" activeClassName="active">
+				<NavLink to="/" exact className="item" activeClassName="active">
 					Home
 				</NavLink>
 				<NavLink to="/add" exact className="item" activeClassName="active">
@@ -29,9 +47,7 @@ import { connect } from "react-redux"
 							</Label>
 						</div>
 					</Menu.Item>
-					<NavLink to="/logout" exact className="item" activeClassName="active">
-						Logout
-					</NavLink>
+				 <NavLink to="#" className="item" onClick={this.handleLogOut}>Logout</NavLink>
 				</Menu.Menu>
 			</Menu>
 		)
@@ -39,7 +55,7 @@ import { connect } from "react-redux"
 }
 
 const mapStateToProps = state => {
-  return { authedUser: state.authedUser, users: state.users };
+	return { authedUser: state.authedUser, users: state.users };
 };
 
 export default connect(mapStateToProps)(Navigation);
