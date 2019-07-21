@@ -19,18 +19,12 @@ export function saveQuestion (info) {
   return _saveQuestion(info)
 }
 
-export function saveQuestionAnswer (info) {
-  return _saveQuestionAnswer(info)
-}
-
-export const fakeAuth = {
-  isAuthenticated: false,
-  authenticate(cb) {
-    this.isAuthenticated = true
-    setTimeout(cb, 100) // fake async
-  },
-  signout(cb) {
-    this.isAuthenticated = false
-    setTimeout(cb, 100) // fake async
-  }
+export function saveQuestionAnswer(authedUser, qid, answer) {
+    return _saveQuestionAnswer(
+        {
+            authedUser,
+            qid,
+            answer
+        }
+    )
 }
