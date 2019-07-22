@@ -30,6 +30,7 @@ class Login extends Component {
 		const {from} = this.props.location.state || {from: {pathname: '/'}}
 		const {isLogged, username} = this.state
 		const disableSubmit = username === ''
+
 		if (isLogged) {
 			return <Redirect to={from}/>
 		}
@@ -42,19 +43,19 @@ class Login extends Component {
 					</Card.Content>
 					<Card.Content extra>
 						<Form onSubmit={this.handleSubmit}>
-								<FormGroup>
-										<select id="username"
-											value={this.state.username}
-														onChange={this.handleChange}>
-												<option value='' disabled>Select</option>
-												{this.props.users.map((user) => (
-													<option key={user.id} value={user.id}>{user.name}</option>
-												))}
-										</select>
-								</FormGroup>
-								<Button type="submit" primary disabled={disableSubmit}>
-									Login
-								</Button>
+							<FormGroup>
+									<select id="username"
+										value={this.state.username}
+													onChange={this.handleChange}>
+											<option value='' disabled>Select</option>
+											{this.props.users.map((user) => (
+												<option key={user.id} value={user.id}>{user.name}</option>
+											))}
+									</select>
+							</FormGroup>
+							<Button type="submit" primary disabled={disableSubmit}>
+								Login
+							</Button>
 						</Form>
 					</Card.Content>
 				</Card>

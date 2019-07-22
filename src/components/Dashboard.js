@@ -32,7 +32,7 @@ class Dashboard extends Component {
 							content='No questions answered'
 						/>
 						}
-						<Grid columns={3}>
+						<Grid columns={2}>
 							<Grid.Row stretched>
 								{answeredQuestionsIds.map((id) => <QuestionList key={id} id={id}/>)}
 							</Grid.Row>
