@@ -44,7 +44,7 @@ function mapStateToProps({questions, users, authedUser}, {id}) {
 		else if (question.optionTwo.votes.includes(authedUser))
 			return 'Option Two'
 		else return null;
-	};
+	}
 
 	return {
 		question: question || null,
