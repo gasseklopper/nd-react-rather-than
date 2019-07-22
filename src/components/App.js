@@ -24,14 +24,13 @@ class App extends Component {
 			<Router>
 				<Fragment>
 					<LoadingBar/>
-							<div>
-								<Route path="/login" component={Login}/>
-								<PrivateRoute path="/" exact component={Dashboard}/>
-								<PrivateRoute path="/add" component={AddPoll}/>
-								<PrivateRoute path="/leaderboard" component={Leaderboard}/>
-								<PrivateRoute path="/question/:question_id" component={Question}/>
-							</div>
-
+						<div>
+							<Route path="/login" component={Login}/>
+							<PrivateRoute path="/" exact component={Dashboard}/>
+							<PrivateRoute path="/add" component={AddPoll}/>
+							<PrivateRoute path="/leaderboard" component={Leaderboard}/>
+							<PrivateRoute path="/question/:question_id" component={Question}/>
+						</div>
 				</Fragment>
 			</Router>
 		)
