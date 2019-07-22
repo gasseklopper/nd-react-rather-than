@@ -28,8 +28,8 @@ class Login extends Component {
 
 	render() {
 		const {from} = this.props.location.state || {from: {pathname: '/'}}
-		const {isLogged} = this.state
-
+		const {isLogged, username} = this.state
+		const disableSubmit = username === ''
 		if (isLogged) {
 			return <Redirect to={from}/>
 		}
@@ -52,7 +52,7 @@ class Login extends Component {
 												))}
 										</select>
 								</FormGroup>
-								<Button type="submit" id="_submit" name="_submit">
+								<Button type="submit" primary disabled={disableSubmit}>
 									Login
 								</Button>
 						</Form>
