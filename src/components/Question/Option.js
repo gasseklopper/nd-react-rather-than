@@ -1,9 +1,7 @@
 import React, {Component} from 'react'
 import {connect} from 'react-redux'
 import { Redirect } from 'react-router-dom'
-import {
-Button,
-} from "semantic-ui-react";
+
 
 
 
@@ -30,20 +28,22 @@ class Option extends Component {
 
 		return (
 			showResults === false ?
-				<Button  onClick={this.handleClick}>
-					<div>
+				<div  onClick={this.handleClick}>
+					<div className={isVoted ? ("selected-option") : ''}>
 						<div>
 							<div>{text}</div>
+							{showResults === true &&
+							(<div>Numbero Of Votes: {votes.length} ({percentage}%)</div>)
+							}
 						</div>
 					</div>
-				</Button>
+				</div>
 				:
-				<div>
+				<div className={isVoted ? ("selected-option") : ''}>
 					<div>
-						{isVoted ? 	<div> Your Vote</div> : ''}
 						<div>{text}</div>
 						{showResults === true &&
-						(<div>Numbero Ofyxcv Votes: {votes.length} ({percentage}%)</div>)
+						(<div>Numbero Of Votes: {votes.length} ({percentage}%)</div>)
 						}
 					</div>
 				</div>
