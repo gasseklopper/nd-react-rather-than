@@ -2,6 +2,7 @@ import React, { Component, Fragment } from "react"
 import { BrowserRouter as Router, Route } from "react-router-dom"
 import { connect } from "react-redux"
 import { handleInitialData } from "../actions/shared"
+import LoadingBar from 'react-redux-loading'
 
 //components
 import AddPoll from '../components/AddPoll'
@@ -22,7 +23,7 @@ class App extends Component {
 		return (
 			<Router>
 				<Fragment>
-
+					<LoadingBar/>
 							<div>
 								<Route path="/login" component={Login}/>
 								<PrivateRoute path="/" exact component={Dashboard}/>

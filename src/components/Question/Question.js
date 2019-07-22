@@ -4,7 +4,7 @@ import {handleAnswerQuestion} from '../../actions/questions'
 import Option from "./Option"
 import MissingQuestion from "./MissingQuestion";
 import { Redirect } from 'react-router-dom'
-import { Card,  Button,  Image } from 'semantic-ui-react'
+import { Card, Image } from 'semantic-ui-react'
 
 class Question extends Component {
 	state = {
@@ -42,10 +42,11 @@ class Question extends Component {
 								<Card.Header>{author.name}{authedUser === author.id &&	<span> (You)</span>}</Card.Header>
 								<Card.Description>
 									Would you rather
-									<Button>
+
 										<Option questionId={question.id} optionName="optionOne" onClick={this.handleVote}/>
-									</Button>
+
 									or <Option questionId={question.id} optionName="optionTwo" onClick={this.handleVote}/>?
+
 								</Card.Description>
 							</Card.Content>
 							<Card.Content extra>
@@ -61,13 +62,11 @@ class Question extends Component {
 function mapStateToProps({questions, users, authedUser}, props) {
 	const {question_id} = props.match.params
 	const question = questions[question_id]
-	const user = users[authedUser]
 
 	return {
 		question: question || null,
 		author: users[question.author],
 		authedUser,
-		showResults: Object.keys(user.answers).includes(question_id)
 	}
 }
 
