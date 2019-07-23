@@ -10,6 +10,7 @@ import Login from "./Login"
 import Dashboard from "./Dashboard"
 import Leaderboard from "./Leaderboard"
 import Question from './Question/Question'
+import FourNullFour from './FourNullFour'
 
 // Routing
 import PrivateRoute from './PrivateRoute'
@@ -25,7 +26,7 @@ class App extends Component {
 				<Fragment>
 					<LoadingBar/>
 						<div>
-							<Route path="/login" component={Login}/>
+							<Route path="/login" exact component={Login}/>
 							<PrivateRoute path="/" exact component={Dashboard}/>
 							<PrivateRoute path="/add" component={AddPoll}/>
 							<PrivateRoute path="/leaderboard" component={Leaderboard}/>
