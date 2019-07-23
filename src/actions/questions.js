@@ -3,7 +3,7 @@ import { handleInitialData } from './shared'
 import { showLoading, hideLoading } from 'react-redux-loading'
 
 export const RECEIVE_QUESTIONS = 'RECIEVE_QUESTIONS'
-export const ANSWER_QUESTION = "ANSWER_QUESTION";
+export const ANSWER_QUESTION = "ANSWER_QUESTION"
 
 export function handleAnswerQuestion(qid, answer) {
 	return (dispatch, getState) => {

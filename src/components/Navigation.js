@@ -18,8 +18,8 @@ import {logOut} from "../actions/authedUser"
 	}
 
 	render() {
-	const { users, authedUser } = this.props;
-	const { name, avatarURL } = users[authedUser];
+	const { users, authedUser } = this.props
+	const { name, avatarURL } = users[authedUser]
 
 		const {redirectLogin} = this.state
 
@@ -55,7 +55,7 @@ import {logOut} from "../actions/authedUser"
 }
 
 const mapStateToProps = state => {
-	return { authedUser: state.authedUser, users: state.users };
-};
+	return { authedUser: state.authedUser, users: state.users }
+}
 
-export default connect(mapStateToProps)(Navigation);
+export default connect(mapStateToProps)(Navigation)

@@ -1,9 +1,7 @@
 import React, {Component} from 'react'
 import {connect} from 'react-redux'
 import { Redirect } from 'react-router-dom'
-import {
-Button,
-} from "semantic-ui-react";
+import {Button} from "semantic-ui-react"
 
 
 

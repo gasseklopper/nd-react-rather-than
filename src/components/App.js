@@ -44,4 +44,4 @@ function mapStateToProps({ users }) {
 	}
 }
 
-export default connect(mapStateToProps)(App);
+export default connect(mapStateToProps)(App)

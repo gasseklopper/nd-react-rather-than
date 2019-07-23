@@ -2,7 +2,7 @@ import React, {Component, Fragment} from 'react'
 import {connect} from 'react-redux'
 import {handleAnswerQuestion} from '../../actions/questions'
 import Option from "./Option"
-import MissingQuestion from "./MissingQuestion";
+import MissingQuestion from "./MissingQuestion"
 import { Redirect } from 'react-router-dom'
 import { Card, Image } from 'semantic-ui-react'
 
