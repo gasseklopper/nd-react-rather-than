@@ -62,10 +62,11 @@ class Question extends Component {
 function mapStateToProps({questions, users, authedUser}, props) {
 	const {question_id} = props.match.params
 	const question = questions[question_id]
+	const author = question !== undefined ? users[question.author] : ''
 
 	return {
 		question: question || null,
-		author: users[question.author],
+		author,
 		authedUser,
 	}
 }
