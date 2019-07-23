@@ -3,33 +3,21 @@ import {connect} from 'react-redux'
 import {handleAnswerQuestion} from '../../actions/questions'
 import Option from "./Option"
 import MissingQuestion from "./MissingQuestion"
-import { Redirect } from 'react-router-dom'
 import { Card, Image } from 'semantic-ui-react'
 
 class Question extends Component {
 	state = {
 		vote: false,
-		redirect: false,
 	}
 
 	handleVote = (vote) => {
 		const {dispatch, question, authedUser} = this.props
 
 		dispatch(handleAnswerQuestion(question.id, vote, authedUser))
-		.then(() =>
-
-			this.setState(() => ({
-				redirect: true
-			}))
-		)
 	}
 
 	render() {
-		const {question, author, redirect, authedUser} = this.props
-
-				if (redirect) {
-			return <Redirect to={`/Dashboard`} />
-		}
+		const {question, author, authedUser} = this.props
 
 		return (
 			<Fragment>
@@ -41,12 +29,11 @@ class Question extends Component {
 							<Card.Content>
 								<Card.Header>{author.name}{authedUser === author.id &&	<span> (You)</span>}</Card.Header>
 								<Card.Description>
-									Would you rather
-
-										<Option questionId={question.id} optionName="optionOne" onClick={this.handleVote}/>
-
-									or <Option questionId={question.id} optionName="optionTwo" onClick={this.handleVote}/>?
-
+									<p>Would you rather</p>
+									<Option questionId={question.id} optionName="optionOne" onClick={this.handleVote}/>
+									<p>or</p>
+									<Option questionId={question.id} optionName="optionTwo" onClick={this.handleVote}/>
+									<p>?</p>
 								</Card.Description>
 							</Card.Content>
 							<Card.Content extra>

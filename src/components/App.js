@@ -10,7 +10,6 @@ import Login from "./Login"
 import Dashboard from "./Dashboard"
 import Leaderboard from "./Leaderboard"
 import Question from './Question/Question'
-import FourNullFour from './FourNullFour'
 
 // Routing
 import PrivateRoute from './PrivateRoute'
